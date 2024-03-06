@@ -25,7 +25,16 @@ exports.signup = async (req, res) =>{
       /**
        * Return this user
        */
-      res.status(201).send(user_created)
+        const res_Obj = {
+            name : user_created.name,
+            userID : user_created.userID,
+            email : user_created.email,
+            userType : user_created.userType,
+            createdAt : user_created.createdAt,
+            updatedAt : user_created.updatedAt,
+        }
+
+      res.status(201).send(res_Obj)
     } catch (err) {
         console.log("Error while registering the user",err);
         res.status(500).send({
