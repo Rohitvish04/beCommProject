@@ -4,7 +4,15 @@
  * I need to intercept this
  */
 const authController = require("../controller/auth.controller")
+const authMW = require("../middlewares/auth.mw")
 
 module.exports = (app)=>{
-    app.post("/ecom/api/v1/auth/signup",authController.signup)
+    app.post("/ecom/api/v1/auth/signup",[authMW.verifySignUpBody],authController.signup)
+
+    /** route
+     * for
+     * POST localhost:8888/ecom/api/v1/auth/signin
+     */
+    app.post("/ecom/api/v1/auth/signin",authController.signin)
 }
+
