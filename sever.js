@@ -4,10 +4,13 @@
 const express = require("express")
 const mongoose = require("mongoose")
 const app = express()
-const sever_config = require("./config/sever.config")
+// const sever_config = require("./config/sever.config")
 const db_config = require("./config/db.config")
 const user_model = require("./models/user.models")
 const bcrypt = require("bcryptjs")
+require('dotenv').config()
+ 
+const PORT= process.env.PORT || 3005;
 
 app.use(express.json())  //middleware
 
@@ -58,10 +61,18 @@ async function init (){
  * Stich the route to the sever
  */
 require("./router/auth.routes")(app)
+require("./router/category.routes")(app)
 
 /**
 • Start the sever 
 **/
-app.listen(sever_config.PORT, () =>{
-  console.log("sever started at port num : ", sever_config.PORT)
+ 
+ 
+
+app.listen(PORT, () =>{
+  console.log("sever started at port num")
 })
+
+// app.listen(sever_config.PORT, () =>{
+//   console.log("sever started at port num : ", sever_config.PORT)
+// })

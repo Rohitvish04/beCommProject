@@ -13,7 +13,7 @@ const verifySignUpBody = async  (req, res, next)=>{
         }
 
         //check for the email
-        if(!req.body.eamil){
+        if(!req.body.email){
             return  res.status(400).send({message : "Failed ! Email was not provied in request body"})
          }
         //check for the userID
@@ -29,14 +29,29 @@ const verifySignUpBody = async  (req, res, next)=>{
         }
         next()
 
-    } catch (err) {
+    } catch(err) {
         console.log("Error while validating the request object", err)
         res.status(500).send({
             message : "Error while validating the request body"
         })
     }
 }
+const verifySignInBody = async (req, res, next)=>{
+
+    if(!req.body.userID){
+        return res.status(400).send({
+            message : "userId is not provided"
+        })
+    }
+    if(!req.body.password){
+        return res.status(400).send({
+            message : "password is not provided"
+        })
+    }
+    next()
+}
 
 module.exports ={
-    verifySignUpBody : verifySignUpBody
+    verifySignUpBody : verifySignUpBody,
+    verifySignInBody : verifySignInBody,
 }
