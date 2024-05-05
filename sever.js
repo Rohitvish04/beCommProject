@@ -10,7 +10,7 @@ const user_model = require("./models/user.models")
 const bcrypt = require("bcryptjs")
 require('dotenv').config()
  
-const PORT= process.env.PORT || 3005;
+const PORT= process.env.PORT || 3000;
 
 app.use(express.json())  //middleware
 
